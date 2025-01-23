@@ -1,0 +1,145 @@
+ #login page 
+
+#html code
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="loginForm" action="login.php" method="POST">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <br>
+            <br>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <br>
+            <br>
+            <button type="submit">Login</button>
+            <div id="error-message" class="error"></div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+#css code
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+#java script
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get the values of username and password
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    
+    // Simple validation
+    if (username === '' || password === '') {
+        document.getElementById('error-message').textContent = 'Both fields are required!';
+        return;
+    }
+
+    // You can replace this part with actual authentication logic, like AJAX or form submission to backend.
+    // For now, we just log the credentials
+    console.log('Username:', username);
+    console.log('Password:', password);
+    document.getElementById('error-message').textContent = ''; // Clear error message if validation is passed
+
+    // Simulate a successful login (for now)
+    alert('Logged in successfully!');
+});
+
+
+#log.php
+
+<?php
+// Example of backend validation (using PHP for simplicity)
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Example hardcoded credentials (you should replace with actual DB validation)
+    $valid_username = 'admin';
+    $valid_password = 'password123';
+
+    if ($username === $valid_username && $password === $valid_password) {
+        echo 'Login successful!';
+    } else {
+        echo 'Invalid username or password';
+    }
+}
+?>
